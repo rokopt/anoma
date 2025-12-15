@@ -73,34 +73,35 @@ defmodule Anoma.Node.Examples.ESolver do
     # the solver does not have solved transactions.
     assert [] == Solver.get_unsolved(enode.node_id)
 
-    # add an intent to the pool
-    # note: this is asynchronous, so block this process for a bit
-    intent_1 = %DumbIntent{value: -1}
-    IntentPool.new_intent(enode.node_id, intent_1)
-    Process.sleep(100)
+    tx_filter = [
+      Anoma.Node.Event.node_filter(enode.node_id),
+      %Mempool.Events.TxFilter{}
+    ]
 
-    # the solver does not have solved transactions.
-    assert Solver.get_unsolved(enode.node_id) == [intent_1]
+    with_subscription [tx_filter] do
+      # add an intent to the pool which cannot be solved
+      # note: this is asynchronous, so block this process for a bit
+      transaction_1 = Examples.ETransparent.ETransaction.commit_intent()
+      IntentPool.new_intent(enode.node_id, transaction_1)
 
-    # --------------------------------------------------------------------------
-    # add a second intent to make it solvable
+      # make sure no events are received
+      :ok = assert_no_events(enode.node_id)
 
-    intent_2 = %DumbIntent{value: 1}
-    IntentPool.new_intent(enode.node_id, intent_2)
-    Process.sleep(100)
+      # the solver does not have solved transactions.
+      assert Solver.get_unsolved(enode.node_id) == [transaction_1]
 
-    # the solver does not have unsolved transactions.
-    assert Solver.get_unsolved(enode.node_id) == []
+      # --------------------------------------------------------------------------
+      # add a second intent to make it solvable
 
-    # --------------------------------------------------------------------------
-    # add a third intent to make it unsolvable
+      transaction_2 = Examples.ETransparent.ETransaction.nullify_intent()
+      IntentPool.new_intent(enode.node_id, transaction_2)
 
-    intent_3 = %DumbIntent{value: 1000}
-    IntentPool.new_intent(enode.node_id, intent_3)
-    Process.sleep(100)
+      # since the intent is solvable, the event should be received
+      :ok = wait_for_tx_event(enode.node_id)
 
-    # the solver does not have solved transactions.
-    assert Solver.get_unsolved(enode.node_id) == [intent_3]
+      # the solver does not have unsolved transactions.
+      assert Solver.get_unsolved(enode.node_id) == []
+    end
   end
 
   @doc """
