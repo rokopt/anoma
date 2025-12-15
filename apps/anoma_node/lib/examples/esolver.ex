@@ -148,4 +148,32 @@ defmodule Anoma.Node.Examples.ESolver do
         end
     end
   end
+
+  defp assert_no_events(node_id, timeout \\ 100) do
+    receive do
+      %EventBroker.Event{
+        body: %Anoma.Node.Event{
+          node_id: ^node_id,
+          body: %Mempool.Events.TxEvent{}
+        }
+      } ->
+        :error
+    after
+      timeout -> :ok
+    end
+  end
+
+  defp wait_for_tx_event(node_id, timeout \\ 100) do
+    receive do
+      %EventBroker.Event{
+        body: %Anoma.Node.Event{
+          node_id: ^node_id,
+          body: %Mempool.Events.TxEvent{}
+        }
+      } ->
+        :ok
+    after
+      timeout -> :error
+    end
+  end
 end
