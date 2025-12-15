@@ -1530,11 +1530,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec silt_call(Noun.t()) :: Noun.t()
   def silt_call(list) do
     sample = list
     [silt_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec silt_test() :: true
   def silt_test() do
     list = [1, 2, 33, 2]
 
@@ -1609,6 +1611,7 @@ defmodule Examples.ENock do
     Nock.nock(put_with_core(), [9, 2, 10, [6, 1 | [core | elem]], 0 | 1])
   end
 
+  @spec put_test() :: Noun.t()
   def put_test() do
     set_elixir = [[1 | 2], [2 | 4], [2 | 3]] |> MapSet.new()
     noun_set = set_elixir |> Noun.Nounable.to_noun()
@@ -1664,6 +1667,7 @@ defmodule Examples.ENock do
     Nock.nock(wyt_with_core(), [9, 2, 10, [6, 1 | core], 0 | 1])
   end
 
+  @spec wyt_test() :: Noun.t()
   def wyt_test() do
     set = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     {:ok, in_core} = in_call(set)
@@ -1702,6 +1706,7 @@ defmodule Examples.ENock do
     Nock.nock(tap_in_with_core(), [9, 2, 10, [6, 1 | core], 0 | 1])
   end
 
+  @spec tap_in_test() :: Noun.t()
   def tap_in_test() do
     set = [123, 0] |> MapSet.new() |> Noun.Nounable.MapSet.to_noun()
     {:ok, in_core} = in_call(set)
@@ -1743,6 +1748,7 @@ defmodule Examples.ENock do
     Nock.nock(int_with_core(), [9, 2, 10, [6, 1 | [core | set]], 0 | 1])
   end
 
+  @spec int_test() :: Noun.t()
   def int_test() do
     set1 = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     set2 = [3, 4, 5, 6] |> MapSet.new() |> Noun.Nounable.to_noun()
@@ -1791,6 +1797,7 @@ defmodule Examples.ENock do
     Nock.nock(dif_with_core(), [9, 2, 10, [6, 1 | [core | set]], 0 | 1])
   end
 
+  @spec dif_test() :: Noun.t()
   def dif_test() do
     set1 = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     set2 = [3, 4, 5, 6] |> MapSet.new() |> Noun.Nounable.to_noun()
@@ -1885,6 +1892,7 @@ defmodule Examples.ENock do
     Nock.nock(has_with_core(), [9, 2, 10, [6, 1 | [core | elem]], 0 | 1])
   end
 
+  @spec has_test() :: Noun.t()
   def has_test() do
     set = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     elem1 = 1
@@ -1926,6 +1934,7 @@ defmodule Examples.ENock do
     Nock.nock(uni_with_core(), [9, 2, 10, [6, 1 | [core | set]], 0 | 1])
   end
 
+  @spec uni_test() :: Noun.t()
   def uni_test() do
     set1 = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     set2 = [3, 4, 5, 6] |> MapSet.new() |> Noun.Nounable.to_noun()
@@ -1974,6 +1983,7 @@ defmodule Examples.ENock do
     Nock.nock(duni_with_core(), [9, 2, 10, [6, 1 | [core | set]], 0 | 1])
   end
 
+  @spec duni_test() :: Noun.t()
   def duni_test() do
     set1 = [1, 2, 3, 4] |> MapSet.new() |> Noun.Nounable.to_noun()
     set2 = [3, 4, 5, 6] |> MapSet.new() |> Noun.Nounable.to_noun()
@@ -2055,6 +2065,7 @@ defmodule Examples.ENock do
     Nock.nock(mput_with_core(), [9, 2, 10, [6, 1 | [core, key | val]], 0 | 1])
   end
 
+  @spec mput_test() :: Noun.t()
   def mput_test() do
     map = %{"a" => 1} |> Noun.Nounable.Map.to_noun()
     {:ok, by_core} = by_call(map)
@@ -2100,6 +2111,7 @@ defmodule Examples.ENock do
     Nock.nock(got_with_core(), [9, 2, 10, [6, 1 | [core | key]], 0 | 1])
   end
 
+  @spec got_test() :: Noun.t()
   def got_test() do
     map = %{"a" => 1} |> Noun.Nounable.Map.to_noun()
     {:ok, by_core} = by_call(map)
@@ -2139,6 +2151,7 @@ defmodule Examples.ENock do
     Nock.nock(tap_by_with_core(), [9, 2, 10, [6, 1 | core], 0 | 1])
   end
 
+  @spec tap_by_test() :: Noun.t()
   def tap_by_test() do
     set = %{123 => "blah"} |> Map.new() |> Noun.Nounable.to_noun()
     {:ok, by_core} = by_call(set)
@@ -2151,6 +2164,7 @@ defmodule Examples.ENock do
     by_core
   end
 
+  @spec kind_arm() :: Noun.t()
   def kind_arm() do
     arm_info = Mugs.index_map().kind
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2160,11 +2174,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec kind_call(Noun.t()) :: Noun.t()
   def kind_call(resource) do
     sample = resource
     [kind_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec kind_test() :: true
   def kind_test() do
     resource = Examples.ETransparent.EResource.trivial_true_resource()
 
@@ -2179,6 +2195,7 @@ defmodule Examples.ENock do
            |> Noun.equal?(kind)
   end
 
+  @spec delta_add_arm() :: Noun.t()
   def delta_add_arm() do
     arm_info = Mugs.index_map().delta_add
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2188,11 +2205,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec delta_add_call(Noun.t(), Noun.t()) :: Noun.t()
   def delta_add_call(delta1, delta2) do
     sample = [delta1 | delta2]
     [delta_add_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec delta_add_test() :: true
   def delta_add_test() do
     delta = EAction.trivial_true_commit_delta()
 
@@ -2207,6 +2226,7 @@ defmodule Examples.ENock do
     assert Noun.equal?(delta, delta_res2)
   end
 
+  @spec delta_sub_arm() :: Noun.t()
   def delta_sub_arm() do
     arm_info = Mugs.index_map().delta_sub
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2216,11 +2236,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec delta_sub_call(Noun.t(), Noun.t()) :: Noun.t()
   def delta_sub_call(delta1, delta2) do
     sample = [delta1 | delta2]
     [delta_sub_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec delta_sub_test() :: true
   def delta_sub_test() do
     delta = EAction.trivial_true_commit_delta()
 
@@ -2237,6 +2259,7 @@ defmodule Examples.ENock do
     assert Noun.equal?(res2, delta)
   end
 
+  @spec zero_delta_arm() :: Noun.t()
   def zero_delta_arm() do
     arm_info = Mugs.index_map().zero_delta
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2244,11 +2267,13 @@ defmodule Examples.ENock do
     "[9 #{arm_index} 0 #{layer_depth}]" |> Noun.Format.parse_always()
   end
 
+  @spec zero_delta_call() :: :error | {:ok, Noun.t()}
   def zero_delta_call() do
     [zero_delta_arm(), 0 | Nock.Lib.rm_core()]
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec zero_delta_test() :: true
   def zero_delta_test() do
     {:ok, res} = zero_delta_call()
 
@@ -2258,6 +2283,7 @@ defmodule Examples.ENock do
     assert Noun.equal?(res1, res2)
   end
 
+  @spec resource_delta_arm() :: Noun.t()
   def resource_delta_arm() do
     arm_info = Mugs.index_map().resource_delta
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2267,6 +2293,7 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec resource_delta_call(Noun.t()) :: :error | {:ok, Noun.t()}
   def resource_delta_call(res) do
     sample = res
 
@@ -2274,6 +2301,7 @@ defmodule Examples.ENock do
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec resource_delta_test(pos_integer()) :: true
   def resource_delta_test(n \\ :rand.uniform(100_000)) do
     res = %Resource{quantity: n}
 
@@ -2282,6 +2310,7 @@ defmodule Examples.ENock do
     assert delta == Resource.delta(res)
   end
 
+  @spec action_delta_arm() :: Noun.t()
   def action_delta_arm() do
     arm_info = Mugs.index_map().action_delta
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2291,11 +2320,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec action_delta_call(Noun.t()) :: Noun.t()
   def action_delta_call(action) do
     sample = action
     [action_delta_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec action_delta_test() :: true
   def action_delta_test() do
     action = EAction.trivial_true_commit_action() |> Noun.Nounable.to_noun()
 
@@ -2307,6 +2338,7 @@ defmodule Examples.ENock do
     assert delta == delta_original
   end
 
+  @spec make_delta_arm() :: Noun.t()
   def make_delta_arm() do
     arm_info = Mugs.index_map().make_delta
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2316,11 +2348,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec make_delta_call(Noun.t()) :: Noun.t()
   def make_delta_call(actions) do
     sample = actions
     [make_delta_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec make_delta_test() :: true
   def make_delta_test() do
     actions =
       MapSet.new([EAction.trivial_true_commit_action()])
@@ -2332,6 +2366,7 @@ defmodule Examples.ENock do
     assert delta == EAction.trivial_true_commit_action() |> Action.delta()
   end
 
+  @spec commitment_arm() :: Noun.t()
   def commitment_arm() do
     arm_info = Mugs.index_map().commitment
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2341,6 +2376,7 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec make_commitment_call(Noun.t()) :: :error | {:ok, Noun.t()}
   def make_commitment_call(res) do
     sample = res
 
@@ -2348,6 +2384,7 @@ defmodule Examples.ENock do
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec commitment_test(pos_integer) :: binary()
   def commitment_test(n \\ :rand.uniform(10000)) do
     res = %Resource{quantity: n} |> Noun.Nounable.to_noun()
 
@@ -2356,6 +2393,7 @@ defmodule Examples.ENock do
     <<"CM_", _rest::bitstring>> = Noun.atom_integer_to_binary(res)
   end
 
+  @spec is_commitment_arm() :: Noun.t()
   def is_commitment_arm() do
     arm_info = Mugs.index_map().is_commitment
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2365,11 +2403,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec make_is_commitment_call(Noun.t()) :: Noun.t()
   def make_is_commitment_call(atom) do
     sample = atom
     [is_commitment_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec is_commitment_test() :: true
   def is_commitment_test() do
     atom_true = "CM_whatever"
     atom_false = "NF_whatever"
@@ -2391,6 +2431,7 @@ defmodule Examples.ENock do
     assert Noun.equal?(res3, 1)
   end
 
+  @spec nullifier_arm() :: Noun.t()
   def nullifier_arm() do
     arm_info = Mugs.index_map().nullifier
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2400,6 +2441,7 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec make_nullifier_call(Noun.t()) :: :error | {:ok, Noun.t()}
   def make_nullifier_call(res) do
     sample = res
 
@@ -2407,6 +2449,8 @@ defmodule Examples.ENock do
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec nullifier_test() :: true
+  @spec nullifier_test(pos_integer()) :: true
   def nullifier_test(n \\ :rand.uniform(10000)) do
     resource = %Resource{quantity: n}
 
@@ -2419,6 +2463,7 @@ defmodule Examples.ENock do
     assert unnouned == resource
   end
 
+  @spec is_nullifier_arm() :: Noun.t()
   def is_nullifier_arm() do
     arm_info = Mugs.index_map().is_nullifier
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2428,11 +2473,13 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec make_is_nullifier_call(Noun.t()) :: Noun.t()
   def make_is_nullifier_call(atom) do
     sample = atom
     [is_nullifier_arm(), sample | Nock.Lib.rm_core()]
   end
 
+  @spec is_nullifier_test() :: true
   def is_nullifier_test() do
     atom_true = "NF_whatever"
     atom_false = "CM_whatever"
@@ -2454,6 +2501,7 @@ defmodule Examples.ENock do
     assert Noun.equal?(res3, 1)
   end
 
+  @spec action_create_arm() :: Noun.t()
   def action_create_arm() do
     arm_info = Mugs.index_map().action_create
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2463,6 +2511,8 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec action_create_call(Noun.t(), Noun.t(), Noun.t()) ::
+          :error | {:ok, Noun.t()}
   def action_create_call(created, consumed, appdata) do
     sample = [created, consumed | appdata]
 
@@ -2470,6 +2520,7 @@ defmodule Examples.ENock do
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec action_create_test() :: true
   def action_create_test() do
     consumed = EResource.trivial_true_resource_2()
     created = EResource.trivial_true_resource()
@@ -2504,6 +2555,7 @@ defmodule Examples.ENock do
     assert EAction.trivial_swap_action_with_extra_data() == action2
   end
 
+  @spec t_compose_arm() :: Noun.t()
   def t_compose_arm() do
     arm_info = Mugs.index_map().t_compose
     layer_depth = example_layer_depth(arm_info.layer)
@@ -2513,6 +2565,7 @@ defmodule Examples.ENock do
     |> Noun.Format.parse_always()
   end
 
+  @spec t_compose_call(Noun.t(), Noun.t()) :: :error | {:ok, Noun.t()}
   def t_compose_call(tx1, tx2) do
     sample = [tx1 | tx2]
 
@@ -2520,6 +2573,7 @@ defmodule Examples.ENock do
     |> Nock.nock([9, 2, 0 | 1])
   end
 
+  @spec t_compose_test() :: true
   def t_compose_test() do
     tx1 = ETransaction.nullify_intent_eph() |> Noun.Nounable.to_noun()
     tx2 = ETransaction.commit_intent() |> Noun.Nounable.to_noun()
