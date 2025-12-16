@@ -553,7 +553,7 @@ defmodule Anoma.Node.Transaction.Backends do
     anoma_keyspace(["transparent", key])
   end
 
-  @spec anoma_keyspace(String.t()) :: list(String.t())
+  @spec anoma_keyspace(list()) :: list(String.t())
   defp anoma_keyspace(key) do
     ["anoma" | key]
   end
